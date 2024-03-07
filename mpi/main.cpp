@@ -2,7 +2,23 @@
 #include <chrono>
 #include "vmpi.hpp"
 #include <mpi.h>
+#include <sys/time.h>
 
+double my_clock()
+{
+/* struct timeval { long        tv_sec;
+            long        tv_usec;        };
+ 
+struct timezone { int   tz_minuteswest;
+             int        tz_dsttime;      };     */
+ 
+        struct timeval tp;
+        struct timezone tzp;
+        int i;
+ 
+        i = gettimeofday(&tp,&tzp);
+        return ( (double) tp.tv_sec + (double) tp.tv_usec * 1.e-6 );
+}
 
 int main(int argc, char* argv[]) {
     MPI_Init(&argc, &argv);
@@ -21,19 +37,13 @@ int main(int argc, char* argv[]) {
     }
 
     const int runs = 100;
-    double totalDuration = 0; 
+    double start_time = my_clock();
 
-    for (int i = 0; i < runs; ++i) {
-        auto start = std::chrono::high_resolution_clock::now();
-        
-        axpy(n, 2.0, x, y, z);
-        
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double, std::milli> duration = end - start;
-        totalDuration += duration.count();
+    for (int i = 0; i < runs; ++i) {        
+        axpy(n, 2.0, x, y, z);     
     }
-
-    double averageDuration = totalDuration / runs;
+    double end_time = my_clock();
+    double averageDuration = (end_time - start_time) / runs;
     
     if (rank == size - 1){
     std::cout << "Average execution time over " << runs << " runs: " << averageDuration << " ms" << std::endl;

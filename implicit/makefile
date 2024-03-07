@@ -1,6 +1,6 @@
 # By default select gcc-13
 CXX=g++-13
-CXXFLAGS=-O3 -mavx2
+CXXFLAGS=-O3 
 
 SOURCES=vector_imp.cpp main.cpp
 HEADERS=vector_imp.hpp

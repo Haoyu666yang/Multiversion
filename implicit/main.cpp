@@ -1,6 +1,23 @@
 #include <iostream>
 #include <chrono>
 #include "vector_imp.hpp"
+#include <sys/time.h>
+
+double my_clock()
+{
+/* struct timeval { long        tv_sec;
+            long        tv_usec;        };
+ 
+struct timezone { int   tz_minuteswest;
+             int        tz_dsttime;      };     */
+ 
+        struct timeval tp;
+        struct timezone tzp;
+        int i;
+ 
+        i = gettimeofday(&tp,&tzp);
+        return ( (double) tp.tv_sec + (double) tp.tv_usec * 1.e-6 );
+}
 
 int main() {
     const size_t n = 20000; 
@@ -14,20 +31,15 @@ int main() {
         y[i] = static_cast<float>(n - i); 
     }
 
+    double start_time = my_clock();
     const int runs = 100;
-    double totalDuration = 0; 
 
-    for (int i = 0; i < runs; ++i) {
-        auto start = std::chrono::high_resolution_clock::now();
-        
+    for (int i = 0; i < runs; ++i) {       
         axpy(n, 2.0, x, y, z);
-        
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double, std::milli> duration = end - start;
-        totalDuration += duration.count();
     }
 
-    double averageDuration = totalDuration / runs;
+    double end_time = my_clock();
+    double averageDuration = (end_time - start_time) / runs;
     std::cout << "Average execution time over " << runs << " runs: " << averageDuration << " ms" << std::endl;
     std::cout << "result: " << z[n-1] << std::endl;
 
