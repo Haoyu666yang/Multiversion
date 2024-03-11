@@ -26,21 +26,25 @@ int main() {
     float* y = new float[n];
     float* z = new float[n];
 
+#pragma omp parallel
+{ 
+#pragma omp for
     for(size_t i = 0; i < n; ++i) {
         x[i] = static_cast<float>(i); 
         y[i] = static_cast<float>(n - i); 
     }
+}
 
     double start_time = my_clock();
     const int runs = 100;
 
     for (int i = 0; i < runs; ++i) {       
-        axpy(n, 2.0, x, y, z);
+        axpy(n, alpha, x, y, z);
     }
 
     double end_time = my_clock();
     double averageDuration = (end_time - start_time) / runs;
-    std::cout << "Average execution time over " << runs << " runs: " << averageDuration << " ms" << std::endl;
+    std::cout << "Average execution time over " << runs << " runs: " << averageDuration << " s" << std::endl;
     std::cout << "result: " << z[n-1] << std::endl;
 
     delete[] x;
