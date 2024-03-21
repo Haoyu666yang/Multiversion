@@ -1,5 +1,6 @@
 #include <iostream>
 #include <chrono>
+#include <cstdlib>
 #include "vmp.hpp"
 #include <sys/time.h>
 
@@ -19,8 +20,20 @@ struct timezone { int   tz_minuteswest;
         return ( (double) tp.tv_sec + (double) tp.tv_usec * 1.e-6 );
 }
 
-int main() {
-    const size_t n = 20000; 
+int main(int argc, char *argv[]) {
+    if (argc < 3){
+        std::cerr << "Usage: " << argv[0] << " <problem_size> <run_times>\n";
+        return 1;
+    }
+
+    const size_t n = std::atoi(argv[1]);
+    const int runs = std::atoi(argv[2]);
+    
+    if (runs <= 0 || n <= 0){
+        std::cerr << "Please enter positive integers for the problem size and run times.\n";
+        return 1;
+    }
+
     const float alpha = 2.0;
     float* x = new float[n];
     float* y = new float[n];
@@ -36,7 +49,6 @@ int main() {
 }
 
     double start_time = my_clock();
-    const int runs = 100;
 
     for (int i = 0; i < runs; ++i) {       
         axpy(n, alpha, x, y, z);
@@ -44,7 +56,7 @@ int main() {
 
     double end_time = my_clock();
     double averageDuration = (end_time - start_time) / runs;
-    std::cout << "Average execution time over " << runs << " runs: " << averageDuration << " s" << std::endl;
+    std::cout << "Average execution time over " << runs << " runs: " << averageDuration << " ms" << std::endl;
     std::cout << "result: " << z[n-1] << std::endl;
 
     delete[] x;

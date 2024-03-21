@@ -1,6 +1,6 @@
 # By default select gcc-13
-CXX=mpic++
-CXXFLAGS=-O3 
+CXX?=mpic++
+CXXFLAGS?=-O3 
 
 SOURCES=vmpi.cpp main.cpp
 HEADERS=vmpi.hpp

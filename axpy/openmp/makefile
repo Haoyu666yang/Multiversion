@@ -16,4 +16,3 @@ main: $(OBJ)
 
 clean:
 	rm -f main $(OBJ)
-
