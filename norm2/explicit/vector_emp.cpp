@@ -1,7 +1,7 @@
 #include "vector_emp.hpp"
 #include <immintrin.h> 
 
-void axpy(const size_t n, const float* x, float& z) {
+void norm2_avx(const size_t n, const float* x, float& z) {
     size_t i;
     __m256 sumVec =  _mm256_setzero_ps();
     for (i = 0; i + 7 < n; i += 8) {
@@ -19,4 +19,14 @@ void axpy(const size_t n, const float* x, float& z) {
     for (; i < n; ++i) {
         sum += x[i] * x[i];
     }
+}
+
+void norm2(const size_t n, const float* x, float& z) {
+#ifdef __AVX__
+    norm2(n, x, z);
+#else
+    for (size_t i = 0; i < n; ++i) {
+        z += x[i] * x[i];
+    }
+#endif
 }
