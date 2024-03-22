@@ -9,7 +9,7 @@ if [ $? -ne 0 ]; then
 fi
 
 for i in $(seq 1 12); do
-    echo "Running with $i thread(s)..."
-    # $1 for problem size and $2 for run times
-    OMP_NUM_THREADS=$i ./main $1 $2
+    echo "Running with $i MPI process(es)..."
+    # Replace ARG1 and ARG2 with your actual arguments
+    mpirun -np $i ./main $1 $2
 done

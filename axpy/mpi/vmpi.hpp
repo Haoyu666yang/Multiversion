@@ -3,6 +3,6 @@
 
 #include <cstddef>
 
-void axpy(const size_t n, const float alpha, const float* x, const float* y, float* z);
+void axpy(const ptrdiff_t n, const float alpha, const float* x, const float* y, float* z);
 
 #endif 
