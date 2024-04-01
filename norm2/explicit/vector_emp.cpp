@@ -1,4 +1,5 @@
 #include "vector_emp.hpp"
+#ifdef __AVX2__
 #include <immintrin.h> 
 
 void norm2_avx(const size_t n, const float* x, float& z) {
@@ -20,10 +21,11 @@ void norm2_avx(const size_t n, const float* x, float& z) {
         sum += x[i] * x[i];
     }
 }
+#endif
 
 void norm2(const size_t n, const float* x, float& z) {
-#ifdef __AVX__
-    norm2(n, x, z);
+#ifdef __AVX2__
+    norm2_avx(n, x, z);
 #else
     for (size_t i = 0; i < n; ++i) {
         z += x[i] * x[i];

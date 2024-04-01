@@ -54,8 +54,6 @@ int main(int argc, char *argv[]) {
     std::cout << "result: " << z[n-1] << std::endl;
 
     delete[] x;
-    delete[] y;
-    delete[] z;
 
     return 0;
 }

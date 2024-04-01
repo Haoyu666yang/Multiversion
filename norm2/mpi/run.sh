@@ -1,6 +1,5 @@
 #!/bin/bash
 source ./setup.sh
-
 make
 
 if [ $? -ne 0 ]; then
