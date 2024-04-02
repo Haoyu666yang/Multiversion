@@ -9,7 +9,7 @@ setup_linux(){
     if command -v $LINUX_COM >/dev/null 2>&1; then
         echo "MPI compiler found: $($LINUX_COM --version | head -n 1)"
         export CXX=$LINUX_COM
-        export CXXFLAGS='-O3'
+        export CXXFLAGS='-O3 -mavx2'
     else
         echo "MPI compiler not found, please install MPI."
         exit 1

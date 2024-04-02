@@ -1,6 +1,6 @@
 #!/bin/bash
 source ./setup.sh
-
+make clean
 make
 
 if [ $? -ne 0 ]; then
