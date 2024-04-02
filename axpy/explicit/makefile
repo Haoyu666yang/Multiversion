@@ -1,5 +1,5 @@
 # By default select gcc-13
-CXX?=g++
+CXX=g++-13
 CXXFLAGS?=-mavx2 -mfma -O3
 
 SOURCES=vector_emp.cpp main.cpp

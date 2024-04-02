@@ -3,6 +3,7 @@
 #include "vector_imp.hpp"
 #include <sys/time.h>
 
+
 double my_clock()
 {
 /* struct timeval { long        tv_sec;
@@ -32,12 +33,12 @@ int main(int argc, char *argv[]) {
         std::cerr << "Please enter positive integers for the problem size and run times.\n";
         return 1;
     }
-
+    
     float* x = new float[n];
     float z = 0;
-
+    
     for(size_t i = 0; i < n; ++i) {
-        x[i] = static_cast<float>(i); 
+        x[i] = static_cast<float>(i+1); 
     }
 
     double start_time = my_clock();

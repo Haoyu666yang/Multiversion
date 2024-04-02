@@ -1,6 +1,6 @@
 # By default select gcc-13
-CXX=g++-13
-CXXFLAGS=-mavx2 -mfma -O3
+CXX?=g++
+CXXFLAGS?=-mavx2 -mfma -O3
 
 SOURCES=vector_emp.cpp main.cpp
 HEADERS=vector_emp.hpp

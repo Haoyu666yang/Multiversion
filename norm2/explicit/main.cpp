@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     float z = 0;
 
     for(size_t i = 0; i < n; ++i) {
-        x[i] = static_cast<float>(i); 
+        x[i] = static_cast<float>(i+1); 
     }
 
     double start_time = my_clock();
@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
     double end_time = my_clock();
     double averageDuration = (end_time - start_time) / runs;
     std::cout << "Average execution time over " << runs << " runs: " << averageDuration << " ms" << std::endl;
-    std::cout << "result: " << z[n-1] << std::endl;
+    std::cout << "result: " << z << std::endl;
 
     delete[] x;
 

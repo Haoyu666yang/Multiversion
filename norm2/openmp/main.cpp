@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
 { 
 #pragma omp for
     for(size_t i = 0; i < n; ++i) {
-        x[i] = static_cast<float>(i); 
+        x[i] = static_cast<float>(i+1); 
     }
 }
 

@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
     float z = 0;
 
     for(size_t i = start; i < end; ++i) {
-        x[i-start] = static_cast<float>(i); 
+        x[i-start] = static_cast<float>(i+1); 
     }
 
 

@@ -1,6 +1,6 @@
 # By default select gcc-13
-CXX=g++-13
-CXXFLAGS=-O3 -fopenmp
+CXX?=g++
+CXXFLAGS?=-O3 -fopenmp
 
 SOURCES=vmp.cpp main.cpp
 HEADERS=vmp.hpp
