@@ -9,7 +9,7 @@ setup_linux(){
     if command -v $LINUX_COM >/dev/null 2>&1; then
         echo "OpenMP compiler found: $($LINUX_COM --version | head -n 1)"
         export CXX=$LINUX_COM
-        export CXXFLAGS='-O3 -fopenmp'
+        export CXXFLAGS='-O3 -fopenmp -mavx2'
     else
         echo "OpenMP compiler not found, please install OpenMP."
         exit 1
