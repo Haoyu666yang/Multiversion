@@ -7,7 +7,7 @@ setup_linux(){
     if command -v $LINUX_COM >/dev/null 2>&1; then
         echo "Compiler found: $($LINUX_COM --version | grep release)"
         export CXX=$LINUX_COM
-        export CXXFLAGS='-Xcompiler -O3,-mavx2'
+        export CXXFLAGS='-O0 -m64 -g -G'
     else
         echo "Compiler not found, please ensure nvcc is installed."
         exit 1

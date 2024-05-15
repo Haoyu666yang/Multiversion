@@ -46,6 +46,7 @@ int main(int argc, char *argv[]) {
 
     for (int i = 0; i < runs; ++i) {      
         norm2(n, x, z);
+        
     }
 
     double end_time = my_clock();

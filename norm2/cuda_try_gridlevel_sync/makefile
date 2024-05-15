@@ -1,5 +1,5 @@
 CXX?=nvcc
-CXXFLAGS?=-Xcompiler -O3,-mavx2 
+CXXFLAGS?=-Xcompiler -O3,-mavx2 --std=c++11
 # CXXFLAGS+=-DNDEBUG
 
 ARCHFLAGS=\
